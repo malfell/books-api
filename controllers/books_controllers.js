@@ -1,3 +1,19 @@
+//Quick End Points Links for Your Convenience 
+// Home: http://localhost:3000
+// Index: http://localhost:3000/books
+
+// Individual Books
+// The Shinobi Initiative
+    // http://localhost:3000/books/62bdcad652904f5df6e5e4a5
+
+// Tess the Wonder Dog
+    // http://localhost:3000/books/62bdcad652904f5df6e5e4a6
+
+// The Annals of Arathrae
+    // http://localhost:3000/books/62bdcad652904f5df6e5e4a7
+// Wâˆ€RP
+    // http://localhost:3000/books/62bdcad652904f5df6e5e4a8
+
 // DEPENDENCIES
 // Create Express Router
 const books = require('express').Router();
@@ -42,8 +58,6 @@ books.get('/seed', (req, res) => {
         }))
 })
 
-
-
 // ROUTES
 // INDEX -- list books
 books.get('/', (req, res) => {
@@ -56,7 +70,7 @@ books.get('/', (req, res) => {
     //error handling
     .catch(err => {
         console.log(err)
-        res.status(404)
+        res.status(404).send('<h1>404 NOT FOUND, GOSH, GIVE IT A REST</h1>')
     })
 });
 
@@ -71,21 +85,22 @@ books.get('/:id', (req, res) => {
     //catches error
     .catch(err => {
         console.log(err)
-        res.status(404)
+        res.status(404).send('<h1>404 NOT FOUND, GOSH, GIVE IT A REST</h1>')
     })
 })
 
 // CREATE BOOK
-books.post('/books', (req, res) => {
+books.post('/', (req, res) => {
     //create book
     Book.create(req.body)
-    .then( () => {
-        res.redirect('/books')
+    .then( (createdBook) => {
+        //shows data for created book
+        res.json(createdBook)
     })
     //catches error
     .catch(err => {
         console.log(err)
-        res.status(404)
+        res.status(404).send('<h1>404 NOT CREATED, GOSH, GIVE IT A REST</h1>')
     })
 })
 
@@ -96,12 +111,11 @@ books.delete('/:id', (req, res) => {
     Book.findByIdAndDelete(req.params.id)
     .then(deletedBook => {
         res.send(`Delete was successful. Hope you didn't need that.`)
-        res.json(deletedBook)
     })
     //catches error
     .catch(err => {
         console.log(err)
-        res.status(404)
+        res.status(404).send('<h1>404 NOT DELETED, GOSH, GIVE IT A REST</h1>')
     })
 })
 
@@ -116,7 +130,7 @@ books.put('/:id', (req, res) => {
     //catches error
     .catch(err => {
         console.log(err)
-        res.status(404)
+        res.status(404).send('<h1>404 NOT UPDATED, GOSH, GIVE IT A REST</h1>')
     })
 })
 
