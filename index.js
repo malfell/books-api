@@ -3,6 +3,8 @@
 const express = require('express');
 // Require Mongoose
 const mongoose = require('mongoose');
+// Require Cors
+const cors = require('cors');
 
 
 //CONFIGURATION
@@ -22,7 +24,9 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopolo
 // Middleware
 //parses JSON and puts it in req.body
 app.use(express.json());
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}));
+//initialize cors
+app.use(cors());
 
 // HOMEPAGE ROUTE
 app.get('/', (req, res) => {
