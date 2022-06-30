@@ -10,8 +10,6 @@ const bookSchema = new Schema({
     year: { type: Number },
     quantity: { type: Number },
     imageURL: {type: String },
-
-
 });
 
 // Create Model

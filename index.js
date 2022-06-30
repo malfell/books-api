@@ -28,5 +28,10 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+// 404 ROUTE
+app.get('*', (req, res) => {
+    res.status(404).send('<h1>404 NOT FOUND, GOSH, GIVE IT A REST</h1>')
+})
+
 // LISTEN FOR CONNECTIONS
-app.listen(3000)
+app.listen(process.env.PORT)
