@@ -4,6 +4,7 @@ const express = require('express');
 // Require Mongoose
 const mongoose = require('mongoose');
 
+
 //CONFIGURATION
 //require dotenv
 require('dotenv').config();
