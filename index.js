@@ -22,11 +22,17 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopolo
 // Middleware
 //parses JSON and puts it in req.body
 app.use(express.json());
+app.use(express.urlencoded({extended: true}))
 
 // HOMEPAGE ROUTE
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
+
+//Controllers and Routes
+//imports the books router
+const booksController = require('./controllers/books_controllers.js');
+app.use('/books', booksController);
 
 // 404 ROUTE
 app.get('*', (req, res) => {
